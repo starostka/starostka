@@ -38,6 +38,12 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn_bundle(UiCameraBundle::default());
 }
 
+struct ButtonIdentifier {
+    Play,
+    Options,
+    Exit
+}
+
 fn display_main_menu(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
