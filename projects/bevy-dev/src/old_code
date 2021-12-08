@@ -1,0 +1,32 @@
+
+
+struct Question {
+    question: String,
+    answer: String,
+}
+
+fn startup(mut commands: Commands) {
+    commands.spawn().insert(Question {
+        question: String::from("Who made this program?"),
+        answer: String::from("Benjamin Starostka Jakosen"),
+    });
+}
+
+fn play(app_state: Res<State<AppState>>, keys: Res<Input<KeyCode>>) {
+    match app_state.current() {
+        AppState::InGame => {
+            println!("Not implemented!")
+        }
+        AppState::MainMenu => {
+            println!("Welcome to the big quiz!");
+            println!("Please press space to start...");
+
+            if keys.just_pressed(KeyCode::Space) {
+                println!("We are ready to go!");
+            }
+        }
+        AppState::Paused => {
+            println!("Not implemented!")
+        }
+    }
+}
