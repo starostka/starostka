@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 bevy = {path = "crates/bevy"}
+noise = "0.7"
