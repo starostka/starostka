@@ -6,29 +6,10 @@ pub struct MainMenuPlugin;
 impl Plugin for MainMenuPlugin {
     fn build(&self, app: &mut AppBuilder) {
         app
-        .init_resource::<Selected>()
         .add_system_set(
             SystemSet::on_enter(AppState::MainMenu).with_system(display_main_menu.system()),
         )
         .add_system_set(SystemSet::on_update(AppState::MainMenu).with_system(handle_ui.system()));
-    }
-}
-
-#[derive(Debug)]
-struct MainMenuUI {
-    id: String,
-}
-
-struct CurrentBtn;
-struct PlayBtn;
-struct OptionsBtn;
-
-struct Selected{
-    pub current: ButtonBundle
-}
-impl Default for Selected {
-    fn default() -> Self {
-        Selected {current: ButtonBundle::default()}
     }
 }
 
@@ -37,33 +18,6 @@ fn display_main_menu(
     asset_server: Res<AssetServer>,
     mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
-    // title text
-    commands
-        .spawn_bundle(NodeBundle {
-            style: Style {
-                margin: Rect::all(Val::Auto),
-                justify_content: JustifyContent::Center,
-                align_items: AlignItems::Center,
-                ..Default::default()
-            },
-            material: materials.add(Color::NONE.into()),
-            ..Default::default()
-        })
-        .with_children(|parent| {
-            parent.spawn_bundle(TextBundle {
-                text: Text::with_section(
-                    format!("Welcome to stranger"),
-                    TextStyle {
-                        font: asset_server.load("../crates/bevy/assets/fonts/FiraSans-Bold.ttf"),
-                        font_size: 80.0,
-                        color: Color::rgb(0.5, 0.5, 1.0),
-                    },
-                    Default::default(),
-                ),
-                ..Default::default()
-            });
-        });
-
     // play button
     commands
         .spawn_bundle(ButtonBundle {
@@ -77,10 +31,8 @@ fn display_main_menu(
                 align_items: AlignItems::Center,
                 ..Default::default()
             },
-            visible: Visible{is_visible: false, ..Default::default()},
             ..Default::default()
         })
-        .insert(PlayBtn) // add identifier
         .with_children(|parent| {
             parent.spawn_bundle(TextBundle {
                 text: Text::with_section(
@@ -121,38 +73,6 @@ fn display_main_menu(
                         font: asset_server.load("../crates/bevy/assets/fonts/FiraSans-Bold.ttf"),
                         font_size: 40.0,
                         color: Color::rgb(0.9, 0.9, 0.9),
-                    },
-                    Default::default(),
-                ),
-                ..Default::default()
-            });
-        });
-}
-
-fn display_game(
-    mut commands: Commands,
-    asset_server: Res<AssetServer>,
-    mut materials: ResMut<Assets<ColorMaterial>>,
-) {
-    commands
-        .spawn_bundle(NodeBundle {
-            style: Style {
-                margin: Rect::all(Val::Auto),
-                justify_content: JustifyContent::Center,
-                align_items: AlignItems::Center,
-                ..Default::default()
-            },
-            material: materials.add(Color::NONE.into()),
-            ..Default::default()
-        })
-        .with_children(|parent| {
-            parent.spawn_bundle(TextBundle {
-                text: Text::with_section(
-                    format!("InGame"),
-                    TextStyle {
-                        font: asset_server.load("../crates/bevy/assets/fonts/FiraSans-Bold.ttf"),
-                        font_size: 80.0,
-                        color: Color::rgb(0.5, 0.5, 1.0),
                     },
                     Default::default(),
                 ),

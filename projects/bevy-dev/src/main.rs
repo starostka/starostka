@@ -48,6 +48,8 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>, mut app_state: 
     println!("> Setup Reached");
 
     // UI Camera
-    commands.spawn_bundle(UiCameraBundle::default());
+    commands
+    .spawn_bundle(UiCameraBundle::default())
+    .spawn_bundle(UiCameraBundle::default());
 
 }
