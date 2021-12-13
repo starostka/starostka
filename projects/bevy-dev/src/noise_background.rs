@@ -32,3 +32,11 @@ impl FromResource for PointMaterialResource {
         let asset_server = resources.get::<AssetServer>().unwrap();
     }
 }
+
+fn init_background( ) {
+    
+}
+
+fn animate_background() {
+    
+}
