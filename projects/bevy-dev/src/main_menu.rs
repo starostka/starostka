@@ -1,4 +1,5 @@
 use bevy::{input::*, prelude::*};
+use rotate_enum::RotateEnum;
 
 use crate::AppState;
 
@@ -6,12 +7,27 @@ pub struct MainMenuPlugin;
 impl Plugin for MainMenuPlugin {
     fn build(&self, app: &mut AppBuilder) {
         app
+        .init_resource::<MenuState>()
         .add_system_set(
             SystemSet::on_enter(AppState::MainMenu).with_system(display_main_menu.system()),
         )
-        .add_system_set(SystemSet::on_update(AppState::MainMenu).with_system(handle_ui.system()));
+        .add_system_set(SystemSet::on_update(AppState::MainMenu).with_system(handle_ui.system()))
+        .add_system(update_menu.system());
     }
 }
+
+#[derive(Debug, RotateEnum)]
+enum Buttons {PLAY, OPTIONS, EXIT}
+impl Default for Buttons {
+    fn default() -> Self {Buttons::PLAY}
+}
+#[derive(Default, Debug)]
+struct MenuState{
+    selected: Buttons
+}
+
+// constants
+const SELECTED_SIZE: f64 = 60.0;
 
 fn display_main_menu(
     mut commands: Commands,
@@ -20,90 +36,65 @@ fn display_main_menu(
 ) {
     // play button
     commands
-        .spawn_bundle(ButtonBundle {
-            style: Style {
-                size: Size::new(Val::Px(150.0), Val::Px(65.0)),
-                // center button
-                margin: Rect::all(Val::Auto),
-                // horizontally center child text
-                justify_content: JustifyContent::Center,
-                // vertically center child text
-                align_items: AlignItems::Center,
-                ..Default::default()
-            },
+        .spawn_bundle(NodeBundle {
             ..Default::default()
-        })
-        .with_children(|parent| {
+        }).with_children(|parent| {
             parent.spawn_bundle(TextBundle {
                 text: Text::with_section(
                     "Play",
-                    TextStyle {
-                        font: asset_server.load("../crates/bevy/assets/fonts/FiraSans-Bold.ttf"),
-                        font_size: 40.0,
-                        color: Color::rgb(0.9, 0.9, 0.9),
-                    },
-                    Default::default(),
+                    TextStyle { font: asset_server.load("../assets/fonts/nasalization-rg.otf"), font_size: 40.0, color: Color::BLACK },
+                    Default::default()
                 ),
-                ..Default::default()
-            });
-        });
+                ..Default::default()  
+            }).insert(Buttons::PLAY);
 
-    // option button
-    commands
-        .spawn_bundle(ButtonBundle {
-            style: Style {
-                size: Size::new(Val::Px(150.0), Val::Px(65.0)),
-                // center button
-                margin: Rect::all(Val::Auto),
-                // horizontally center child text
-                justify_content: JustifyContent::Center,
-                // vertically center child text
-                align_items: AlignItems::Center,
-                ..Default::default()
-            },
-            visible: Visible{is_visible: false, ..Default::default()},
-            ..Default::default()
-        })
-        .insert(OptionsBtn)
-        .with_children(|parent| {
             parent.spawn_bundle(TextBundle {
                 text: Text::with_section(
                     "Options",
-                    TextStyle {
-                        font: asset_server.load("../crates/bevy/assets/fonts/FiraSans-Bold.ttf"),
-                        font_size: 40.0,
-                        color: Color::rgb(0.9, 0.9, 0.9),
-                    },
-                    Default::default(),
+                    TextStyle { font: asset_server.load("../assets/fonts/nasalization-rg.otf"), font_size: 40.0, color: Color::BLACK},
+                    Default::default()
                 ),
                 ..Default::default()
-            });
+            }).insert(Buttons::OPTIONS);
+
+            parent.spawn_bundle(TextBundle {
+                text: Text::with_section(
+                    "Exit",
+                    TextStyle { font: asset_server.load("../assets/fonts/nasalization-rg.otf"), font_size: 40.0, color: Color::BLACK},
+                    Default::default()
+                ),
+                ..Default::default()
+            }).insert(Buttons::EXIT);
         });
 }
 
+// update menu upon selects
+fn update_menu(
+    mut query: Query<(&mut Text, &Buttons), With<Buttons>>,
+    res: Res<MenuState>
+) {
+    if res.is_changed() {
+        for (mut q, btn) in query.iter_mut() {
+            q.sections[0].style.font_size += 10.0;
+            println!("{:#?}", q);
+        }
+        println!("State changed");
+    }
+}
+
+// perform changes
 fn handle_ui(
     mut keys: ResMut<Input<KeyCode>>,
-    //mut app_state: ResMut<State<AppState>>,
-    mut play_btn: Query<&mut Visible, (With<PlayBtn>)>,
-    //mut options_btn: Query<&mut Visible, (With<OptionsBtn>)>,
-    mut selected: ResMut<Selected>
+    mut menu_state: ResMut<MenuState>,
 ) {
     // force to main menu with escape
-    /*
-    if keys.just_pressed(KeyCode::Escape) {
-        app_state.set(AppState::MainMenu).unwrap();
-        keys.reset(KeyCode::Escape);
-    }
-    */
-
     if keys.just_pressed(KeyCode::Up) {
-        println!("Up!");
-        println!("{:#?}", play_btn.single_mut());
-        let mut visible = play_btn.single_mut().expect("Found it!");
-        visible.is_visible = true;
-        
-    };
+        menu_state.selected = Buttons::PLAY;
+        println!("{:#?}", menu_state.selected);
+    }
+
     if keys.just_pressed(KeyCode::Down) {
-        println!("Down!")
-    };
+        menu_state.selected = Buttons::OPTIONS;
+        println!("{:#?}", menu_state.selected);
+    }
 }
