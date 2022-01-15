@@ -16,18 +16,18 @@ impl Plugin for MainMenuPlugin {
     }
 }
 
-#[derive(Debug, RotateEnum)]
+#[derive(Debug, RotateEnum, PartialEq)]
 enum Buttons {PLAY, OPTIONS, EXIT}
 impl Default for Buttons {
     fn default() -> Self {Buttons::PLAY}
 }
 #[derive(Default, Debug)]
 struct MenuState{
-    selected: Buttons
+    selected: Buttons,
 }
 
 // constants
-const SELECTED_SIZE: f64 = 60.0;
+const SELECTED_SIZE: f32 = 60.0;
 
 fn display_main_menu(
     mut commands: Commands,
@@ -75,10 +75,11 @@ fn update_menu(
 ) {
     if res.is_changed() {
         for (mut q, btn) in query.iter_mut() {
-            q.sections[0].style.font_size += 10.0;
-            println!("{:#?}", q);
+            if res.selected == *btn {
+                q.sections[0].style.font_size = SELECTED_SIZE;
+            }
+            q.sections[0].style.font_size = 40.0;
         }
-        println!("State changed");
     }
 }
 
@@ -88,7 +89,9 @@ fn handle_ui(
     mut menu_state: ResMut<MenuState>,
 ) {
     // force to main menu with escape
+
     if keys.just_pressed(KeyCode::Up) {
+        let i = (menu_state.selected + 1) % 3;
         menu_state.selected = Buttons::PLAY;
         println!("{:#?}", menu_state.selected);
     }

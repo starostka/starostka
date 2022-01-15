@@ -1,2 +1,6 @@
 .DS_Store
 .lock
+.env
+__pycache__
+.venv
+.db
