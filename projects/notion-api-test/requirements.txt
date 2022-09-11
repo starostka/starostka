@@ -1,4 +1,0 @@
-celery
-notion-client
-python-dotenv
-celery[redis]
