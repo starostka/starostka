@@ -1,0 +1,1 @@
+# install python, nbdev-v2, pandoc, quarto (github release), #latex ()
