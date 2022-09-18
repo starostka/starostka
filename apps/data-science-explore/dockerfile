@@ -1,7 +1,0 @@
-base # nixos or ubuntu/alpine with nixos
-
-# use nix to install packages
-
-# use nix to setup environment with awesome shell commands
-
-# take notebook as input and generate report output
