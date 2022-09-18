@@ -17,3 +17,9 @@ function lazygit() {
 
 pip install -U nbdev
 nbdev_install_hooks
+
+## Quick download from Github Release and install
+
+gh --repo quarto-dev/quarto-cli release download --pattern '*.deb'
+sudo dpkg -i $(ls quarto-*.deb)
+rm $(ls quarto-*.deb)
