@@ -4,6 +4,13 @@
 __pycache__
 .venv
 .db
-.report-build
-.pdf
-output
+
+## nbdev
+
+## Apps
+
+### Explorer
+*.report-build
+/output
+*.log
+*.pdf
