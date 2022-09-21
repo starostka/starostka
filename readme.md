@@ -16,6 +16,9 @@ git subtree add --prefix starostka https://github.com/Starostka/starostka.git ma
 git subtree pull --prefix starostka https://github.com/Starostka/starostka.git main --squash
 git subtree push --prefix starostka https://github.com/Starostka/starostka.git main
 
+see: https://www.baeldung.com/ops/git-configure-credentials
+
+
 ## hooks
 todo: clean notebook files with nbdev and environment metadata such as deepnotes added image cells
 
