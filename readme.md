@@ -3,6 +3,11 @@ Personal monolithic repository
 
 NOTE: dotfiles are kept in their own repository and controlled with chezmoi.
 
+## subtree
+git subtree add --prefix starostka https://github.com/Starostka/starostka.git main --squash
+git subtree pull --prefix starostka https://github.com/Starostka/starostka.git main --squash
+git subtree push --prefix starostka https://github.com/Starostka/starostka.git main
+
 ## hooks
 todo: clean notebook files with nbdev and environment metadata such as deepnotes added image cells
 
