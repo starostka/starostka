@@ -1,0 +1,16 @@
+.DS_Store
+.lock
+.env
+__pycache__
+.venv
+.db
+
+## nbdev
+
+## Apps
+
+### Explorer
+*.report-build
+/output
+*.log
+*.pdf
