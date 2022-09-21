@@ -1,6 +1,3 @@
 [submodule "projects/bevy-dev/.submodules/bevy"]
 	path = projects/bevy-dev/.submodules/bevy
 	url = https://github.com/bevyengine/bevy.git
-[submodule "starostka"]
-	path = starostka
-	url = https://github.com/Starostka/starostka

@@ -4,6 +4,14 @@ Personal monolithic repository
 NOTE: dotfiles are kept in their own repository and controlled with chezmoi.
 
 ## subtree
+git remote add -f starostka https://github.com/Starostka/starostka.git
+
+**Short form**
+git subtree add --prefix starostka starostka main --squash
+git subtree pull --prefix starostka starostka main --squash
+git subtree push --prefix starostka starostka main
+
+**Long form**
 git subtree add --prefix starostka https://github.com/Starostka/starostka.git main --squash
 git subtree pull --prefix starostka https://github.com/Starostka/starostka.git main --squash
 git subtree push --prefix starostka https://github.com/Starostka/starostka.git main
