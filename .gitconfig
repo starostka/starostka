@@ -10,7 +10,7 @@
 	name = resolve conflicts with nbdev_fix
 	driver = nbdev_merge %O %A %B %P
 
-# Subtree configuration
+# Subtree configuration (instead of url we could add 'starostka' if already added as remote)
 [credential "https://github.com/Starostka/starostka.git"]
   useHttpPath = true
-  helper = "/compute-helpers/code/github_credential_helper.py" starostka hello
+  helper = "/compute-helpers/code/github_credential_helper.py"
