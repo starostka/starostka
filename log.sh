@@ -24,3 +24,14 @@ env
 set
 
 alias
+
+## Git
+# Ubuntu Linux Git Config File Locations
+# Scope     Location and Filename	            Filename Only
+# System    etc/gitconfig	                    gitconfig
+# Global    home/<username>/.gitconfig or ~root/.gitconfig	 .gitconfig
+# Local     <git-repo>/.git/config              config
+# Worktree  <git-repo>/.git/config.worktree	    config.worktree
+
+cat etc/gitconfig
+cat ~/.gitconfig
