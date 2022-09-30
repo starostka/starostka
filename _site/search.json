@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "nbs/01-api.html",
+    "href": "nbs/01-api.html",
+    "title": "Starostka",
+    "section": "",
+    "text": "What the heck am I doing?? Yeah well I’m going to expose code to you guys to make your life easier… Hehe xD\nfunction lazygit() {\n    git add .\n    git commit -a -m \"`TZ=UTC date`\"\n    git push\n}"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "",
+    "section": "",
+    "text": "function lazygit() {\n    git add .\n    git commit -a -m \"`TZ=UTC date`\"\n    git push\n}"
+  },
+  {
+    "objectID": "nbs/02-visualize.html",
+    "href": "nbs/02-visualize.html",
+    "title": "Starostka",
+    "section": "",
+    "text": "Show the code\nx = np.linspace(1, 100)\ny = np.linspace(1, 100)\n\n# example plot\nplt.figure()\nplt.plot(x, y)\nplt.show()"
+  }
+]
