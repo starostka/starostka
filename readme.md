@@ -1,2 +1,3 @@
-### Hi there I'm Starostka 👋
+# Getting started
 
+TODO
