@@ -15,9 +15,9 @@
       };
     in
     {
-      packages = {
-        default = Nil;
-      };
+      # packages = {
+      #   default = Nil;
+      # };
 
       devShells.default = pkgs.mkShell {
         buildInputs = [
