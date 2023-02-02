@@ -1,3 +1,1 @@
-# Getting started
-
-TODO
+# Starostka's Static Site

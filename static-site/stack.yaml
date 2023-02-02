@@ -1,0 +1,10 @@
+resolver: lts-20.9
+extra-deps:
+- hakyll-4.15.1.1
+- pandoc-2.19.2
+- pandoc-types-1.22.2.1
+- doctemplates-0.10.0.2
+- gridtables-0.0.3.0
+- jira-wiki-markup-1.4.0
+- mime-types-0.1.1.0
+- texmath-0.12.5.5

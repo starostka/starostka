@@ -1,55 +1,45 @@
 {
-  description = "Starostka's Public Repository";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.flake-compat.url = "github:edolstra/flake-compat";
-  inputs.flake-compat.flake = false;
-
-  outputs = { self, nixpkgs, flake-utils, flake-compat }:
+  outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-    in
-    {
-      # packages = {
-      #   default = Nil;
-      # };
+      with nixpkgs.legacyPackages.${system};
+      let
+        t = lib.trivial;
+        hl = haskell.lib;
 
-      devShells.default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.git
-          pkgs.nixFlakes
-          pkgs.coreutils
-        ];
-        packages = [
+        name = "static-site";
 
-          # Essentials toolchain
-          pkgs.bashInteractive
-          pkgs.comma
-          pkgs.direnv
+        project = devTools: # [1]
+          let addBuildTools = (t.flip hl.addBuildTools) devTools;
+          in haskellPackages.developPackage {
+            root = lib.sourceFilesBySuffices ./. [ ".cabal" ".hs" ];
+            name = name;
+            returnShellEnv = !(devTools == [ ]); # [2]
 
-          # Python toolchain
-          pkgs.pre-commit
-          pkgs.black
-          pkgs.isort
-          pkgs.mypy
-          pkgs.sphinx
+            modifier = (t.flip t.pipe) [
+              addBuildTools
+              hl.dontHaddock
+              hl.enableStaticLibraries
+              hl.justStaticExecutables
+              hl.disableLibraryProfiling
+              hl.disableExecutableProfiling
+            ];
+          };
 
-          # Haskell toolchain
-          pkgs.haskellPackages.ghcup
-          pkgs.haskellPackages.cabal
-        ];
+      in {
+        packages.pkg = project [ ]; # [3]
 
-        shellHook = ''
-        # define environment variables
-        git_root=$(${pkgs.git}/bin/git rev-parse --show-toplevel)
+        defaultPackage = self.packages.${system}.pkg;
 
-        echo "Welcome to Starostka"
-        '';
-      };
-    });
+        devShell = project (with haskellPackages; [ # [4]
+          cabal-fmt
+          cabal-install
+          haskell-language-server
+          hlint
+        ]);
+      });
 }
