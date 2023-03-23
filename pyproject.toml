@@ -5,7 +5,6 @@ description = ""
 authors = [
     "Benjamin Starostka Jakobsen <benjamin.starostka@gmail.com>",
 ]
-readme = "README.md"
 packages = [{include = "starostka"}]
 
 [tool.poetry.dependencies]
