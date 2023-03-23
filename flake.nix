@@ -1,55 +1,56 @@
 {
-  description = "Starostka's Public Repository";
+  description = "Warp Pipes";
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.flake-compat.url = "github:edolstra/flake-compat";
-  inputs.flake-compat.flake = false;
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-  outputs = { self, nixpkgs, flake-utils, flake-compat }:
+  inputs.poetry2nix = {
+    url = "github:nix-community/poetry2nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { self, nixpkgs, flake-utils, poetry2nix, ... }:
     flake-utils.lib.eachDefaultSystem (system:
     let
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
+      # see https://github.com/nix-community/poetry2nix/tree/master#api for more functions and examples.
+      inherit (poetry2nix.legacyPackages.${system}) mkPoetryEnv mkPoetryApplication;
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      # packages = {
-      #   default = Nil;
-      # };
-
-      devShells.default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.git
-          pkgs.nixFlakes
-          pkgs.coreutils
-        ];
-        packages = [
-
-          # Essentials toolchain
-          pkgs.bashInteractive
-          pkgs.comma
-          pkgs.direnv
-
-          # Python toolchain
-          pkgs.pre-commit
-          pkgs.black
-          pkgs.isort
-          pkgs.mypy
-          pkgs.sphinx
-
-          # Haskell toolchain
-          pkgs.haskellPackages.ghcup
-          pkgs.haskellPackages.cabal
-        ];
-
-        shellHook = ''
-        # define environment variables
-        git_root=$(${pkgs.git}/bin/git rev-parse --show-toplevel)
-
-        echo "Welcome to Starostka"
-        '';
+      # nix build .#name
+      packages = {
+        environment = mkPoetryEnv { projectDir = self; preferWheels = false; };
+        application = mkPoetryApplication { projectDir = self; };
       };
+      packages.default = self.packages.${system}.application; 
+
+      # nix develop .#name
+      devShells = {
+        docs = pkgs.mkShellNoCC {
+          packages = [ ];
+        };
+        publish = pkgs.mkShellNoCC {
+          packages = [];
+        };
+
+        develop = pkgs.mkShell {
+          buildInputs = [ ];
+          packages = [
+            poetry2nix.packages.${system}.poetry
+            pkgs.bashInteractive
+            pkgs.pre-commit
+            pkgs.du-dust
+            pkgs.starship
+            pkgs.magic-wormhole
+            pkgs.graphviz
+          ];
+
+          shellHook = ''
+          eval "$(starship init bash)"
+          '';
+        };
+
+      };
+      devShells.default = self.devShells.${system}.develop;
     });
 }
