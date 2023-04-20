@@ -1,3 +1,1 @@
-# Getting started
-
-TODO
+![Header](./swirly_noise.jpg)
