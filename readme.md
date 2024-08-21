@@ -24,3 +24,7 @@ I'm a **Software/Data Engineer**, and **Sport Enthusiast** from **Denmark** who 
 ![Starostka's GitHub stats](https://github-readme-stats.vercel.app/api?username=starostka&show_icons=true&theme=gruvbox)
 
 <!-- ![GitHub Streak](https://streak-stats.demolab.com?user=starostka&theme=gruvbox&border_radius=4.5) -->
+
+<a href="./information/resume.pdf" target="_blank">
+  <img src="https://img.icons8.com/plasticine/100/000000/resume.png" alt="Resume Icon" width="40px" style="vertical-align:middle;"/> Link to Resume
+</a>
