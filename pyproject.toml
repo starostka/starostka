@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "socviz"
+name = "starostka-public"
 version = "0.1.0"
 description = ""
 authors = [
-    "Benjamin Starostka Jakobsen <benjamin.starostka@gmail.com>",
+    "Benjamin Starostka Jakobsen",
 ]
 packages = [{include = "starostka"}]
 

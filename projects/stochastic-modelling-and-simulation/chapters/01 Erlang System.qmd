@@ -1,0 +1,55 @@
+
+# Introduction to the Erlang system
+
+An Erlang system (also known as a trunk group system) is a system that routes traffic and keeps busy lines in queues.
+
+As a practical example this is what telephone vendors does when many messages are sent through their antennas.
+
+If we assume that the number of busy lines follows a truncated poisson distribution.
+
+$$
+P(i)=c\cdot\frac{A^i}{i!},\quad i=0,\ldots m
+$$
+
+# Generate values using Metropolis-Hastings
+
+We can generate values from this distribution by applying the Metropolis-Hastings algorithm and verify it with a $\chi^2$-test.
+
+First we choose a symmetric proposal distribution.
+
+$$
+q(j|i) = \left\{
+	\begin{array}{ll}
+		0.5\;\; \text{if}\:\:\:|j-i| =1\:\:\:\: \text{or}\:\:\:\:\: |j-i|=m \\
+		0 \;\;\;\;\text{otherwise}
+	\end{array}
+\right.
+$$
+Symmetric because $q(j|i) = q(i|j)$.
+
+And then we decide on a decision boundary for the acceptance probability $\alpha$.
+
+$$
+\alpha = \min(1, \frac{P(j)q(j|i)}{P(i)q(i|j)}) = \min(1, \frac{P(j)}{P(i)}) = \min(1, \frac{A^{j-i}\:i!}{j!})
+$$
+
+# Generate values using Gibbs sampling
+
+- [ ] To be written at a later stage...
+
+# Run the simulation
+
+Using the accompanying program we can simulate the Erlang System in different settings and visualize its performance.
+
+```
+# General overview of the erlang system program
+erlang-system --help
+
+# Task specific commands
+erlang-system simulate --method metropolis-hastings
+erlang-system simulate --method gibbs
+```
+
+# A spark of curiosity
+
+- What are the pros and cons of using either Metropolis-Hasting vs Gibbs sampling?

@@ -1,0 +1,26 @@
+---
+title: Simulated Annealing
+author: Benjamin Starostka Jakobsen
+---
+
+# Simulated annealing
+
+Is a stochastic approximation method that seeks a global maximum.
+
+It works by sampling from a proposal distribution and evaluating the cost function for current state vs sampled state.
+
+Dependening on the acceptance ratio, we accept or decline.
+
+# Create n stations and define the cost function
+
+We create n stations for the travelling salesman problem
+    the cost function computes the cost of travelling a given route
+    using euclidean distances.
+
+# Approximating global minimum using simulated annealing
+
+First we permute a route, i.e., we swap two stations as our symmetric proposal distribution.
+
+Using the acceptance probability, we either accept or decline s*
+
+For each iteration we update the temperature. Usually by lowering it to reduce activity.

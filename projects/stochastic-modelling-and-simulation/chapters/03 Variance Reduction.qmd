@@ -1,0 +1,22 @@
+# Variance reduction methods
+
+For a Monte Carlo sampling method we wish to reduce the variance when sampling
+    such that every new sample is a bit more precise.
+
+We can often sample from an intractable distribution or integral.
+    but we don't know the actual parameters.
+
+# Crude Monte Carlo
+
+Sampling 100 points from a uniform distribution, passing them through the intractable distribution.
+
+Computing the mean and comparing to the true mean.
+
+
+# Antithetic variables
+
+# Control variable
+
+# Statified sampling
+
+# Importance sampling

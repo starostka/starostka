@@ -1,0 +1,13 @@
+creation_rules:
+  - path_regex: sops\.development\.env$
+    key_groups:
+      - pgp:
+          - D8DCCF02F800B8897D9936EBAF2D3AEB61951936
+  - path_regex: sops\.staging\.env$
+    key_groups:
+      - pgp:
+          - D8DCCF02F800B8897D9936EBAF2D3AEB61951936
+  - path_regex: sops\.production\.env$
+    key_groups:
+      - pgp:
+          - D8DCCF02F800B8897D9936EBAF2D3AEB61951936
