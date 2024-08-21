@@ -40,7 +40,7 @@ subtitle: "A work in progress"
 date: today
 author:
   - name: Benjamin Starostka
-    email: benjamin.starostka@gmail.com
+    email: info@starostka.io
 
 execute:
   freeze: auto
