@@ -1,1 +1,1 @@
-Sitemap: https://github.com/Starostka/starostka/sitemap.xml
+Sitemap: https://Starostka.github.io/starostka/sitemap.xml
