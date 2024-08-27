@@ -3,7 +3,7 @@
 </div>
 
 <h3 align="center">Benjamin Starostka Jakobsen</h3>
-<h4 align="center">(Developer|Engineer|Sport Enthusiast)</h4>
+<h4 align="center">(Developer|Engineer|DevOps|Sport Enthusiast)</h4>
 
 <div align="center">
   <a href="https://starostka.io/"><strong>Go to website →</strong></a>
@@ -13,10 +13,10 @@
   •
   <a href="mailto:info@starostka.io">E-mail</a>
   •
-  <a href="https://linkedin.com/in/florian-arens">LinkedIn</a>
+  <a href="https://linkedin.com/in/starostka">LinkedIn</a>
 </div>
 
-I'm a **Software/Data Engineer**, and **Sport Enthusiast** from **Denmark** who specializes in highly scalable and available systems.
+I'm a **Software/Data Engineer**, and **Sport Enthusiast** from **Denmark** who specializes in **DevOps** and highly scalable/available systems.
 
 > I'm currently in the process of moving private projects to this public GitHub profile to showcase some of my work.
 
