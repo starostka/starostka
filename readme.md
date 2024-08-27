@@ -1,6 +1,20 @@
-![Header](./swirly_noise.jpg)
+<div align="center">
+  <img src="./abstract-art.webp" width="50%" alt="Abstract art">
+</div>
 
-**`Digital Shokunin (Developer|Engineer|Sport Enthusiast)`**
+<h3 align="center">Benjamin Starostka Jakobsen</h3>
+<h4 align="center">(Developer|Engineer|Sport Enthusiast)</h4>
+
+<div align="center">
+  <a href="https://starostka.io/"><strong>Go to website →</strong></a>
+  <br />
+  <br />
+  <a href="https://x.com/StarostkaB">x.com</a>
+  •
+  <a href="mailto:info@starostka.io">E-mail</a>
+  •
+  <a href="https://linkedin.com/in/florian-arens">LinkedIn</a>
+</div>
 
 I'm a **Software/Data Engineer**, and **Sport Enthusiast** from **Denmark** who specializes in highly scalable and available systems.
 
