@@ -20,6 +20,7 @@ I'm a **Software/Data Engineer**, and **Sport Enthusiast** from **Denmark** who 
 
 > I'm currently in the process of moving private projects to this public GitHub profile to showcase some of my work.
 
+
 ---
 
 ### Languages and Tools
@@ -33,8 +34,13 @@ I'm a **Software/Data Engineer**, and **Sport Enthusiast** from **Denmark** who 
 
 #
 
-### Stats
+### Contribution Stats
 
 ![Starostka's GitHub stats](https://github-readme-stats.vercel.app/api?username=starostka&show_icons=true&theme=gruvbox)
 
-<!-- ![GitHub Streak](https://streak-stats.demolab.com?user=starostka&theme=gruvbox&border_radius=4.5) -->
+
+<!-- ### How can I support you?
+
+<a href="https://polar.sh/starostka"><img src="https://polar.sh/embed/fund-our-backlog.svg?org=starostka" /></a>
+
+<a href="https://polar.sh/starostka"><img src="https://polar.sh/embed/seeks-funding-shield.svg?org=starostka" /></a> -->
