@@ -3,7 +3,7 @@ name = "starostka-public"
 version = "0.1.0"
 description = ""
 authors = [
-    "Benjamin Starostka Jakobsen",
+    "Benjamin Starostka <info@starostka.io>",
 ]
 packages = [{include = "starostka"}]
 
